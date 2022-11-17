@@ -28,6 +28,7 @@ def multisend(addresses: list, amount: int) -> None:
     ).buildTransaction(txFeatures)
     signedTxn = w3.eth.account.sign_transaction(tx, private_key=privatekey)
     buyTx = w3.eth.send_raw_transaction(signedTxn.rawTransaction)
+    w3.eth.wait_for_transaction_receipt(buyTx.hex())
     print(f"https://goerli.etherscan.io/tx/{buyTx.hex()}")
 
 
